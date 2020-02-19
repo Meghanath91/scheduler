@@ -1,6 +1,10 @@
 // import React from "react";
 import React, { useState } from "react";
+import Appointment from "components/Appointment";
 
+import Header from "components/Appointment/Header";
+import Show from "components/Appointment/Show";
+import Empty from "components/Appointment/Empty";
 
 import "components/Application.scss";
 import DayList from "components/ DayList";
@@ -9,23 +13,68 @@ const days = [
   {
     id: 1,
     name: "Monday",
-    spots: 2,
+    spots: 2
   },
   {
     id: 2,
     name: "Tuesday",
-    spots: 5,
+    spots: 5
   },
   {
     id: 3,
     name: "Wednesday",
-    spots: 0,
-  },
+    spots: 0
+  }
 ];
 
-export default function Application(props) {
+const appointments = [
+  {
+    id: 1,
+    time: "12pm"
+  },
+  {
+    id: 2,
+    time: "1pm",
+    interview: {
+      student: "Lydia Miller-Jones",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png"
+      }
+    }
+  },
+  {
+    id: 3,
+    time: "2pm",
+    interview: {
+      student: "Megatron",
+      interviewer: {
+        id: 2,
+        name: "Tori Malcolm",
+        avatar: "https://i.imgur.com/Nmx0Qxo.png"
+      }
+    }
+  },
+  {
+    id: 4,
+    time: "3pm",
+    interview: {
+      student: "shadowmoon",
+      interviewer: {
+        id: 1,
+        name: "Sylvia Palmer",
+        avatar: "https://i.imgur.com/LpaY82x.png"
+      }
+    }
+  },
+  {
+    id:5,
+    time:"4pm"
+  }
+];
 
-  // const [input, handleInput] = useState("");
+export default function Application() {
   const [day, setDay] = useState("Monday");
 
   return (
@@ -38,12 +87,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-        <DayList
-  days={days}
-  day={day}
-  setDay={setDay}
-/>
-
+          <DayList days={days} day={day} setDay={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -52,7 +96,11 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+      {appointments.map(appointment => {
+        return <Appointment key = {appointment.id} {...appointment} />
+      })}
+        
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
