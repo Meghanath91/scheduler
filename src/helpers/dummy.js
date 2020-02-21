@@ -3,12 +3,14 @@ const state = {
     {
       id: 1,
       name: "Monday",
-      appointments: [1, 2, 3]
+      appointments: [1, 2, 3],
+      interviewers: [1,2]
     },
     {
       id: 2,
       name: "Tuesday",
-      appointments: [4, 5]
+      appointments: [4, 5],
+      interviewers:[1,2]
     }
   ],
   appointments: {
@@ -25,17 +27,30 @@ const state = {
       time: "4pm",
       interview: { student: "Chad Takahashi", interviewer: 2 }
     }
+  },
+  interviewers: {
+    "1": {  
+      "id": 1,
+      "name": "Sylvia Palmer",
+      "avatar": "https://i.imgur.com/LpaY82x.png"
+    },
+    "2": {
+      id: 2,
+      name: "Tori Malcolm",
+      avatar: "https://i.imgur.com/Nmx0Qxo.png"
+    }
   }
+  
 };
 console.log(state.days[0].name)
 const newarr = state.days.filter(item => item.name === "Monday")
-console.log("keystoiterate",newarr[0].appointments)
-let keystoiterate= newarr[0].appointments;
+console.log("keystoiterate",newarr[0])
+let keystoiterate= newarr[0].interviewers;
 
 const result =[];
 // console.log(state.appointments[1],"3pm");
 for(let element of keystoiterate){
-  result.push(state.appointments[element])
+  result.push(state.interviewers[element])
 }
 
-// console.log(result);
+console.log(result);

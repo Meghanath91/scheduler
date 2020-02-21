@@ -5,12 +5,12 @@ export function getAppointmentsForDay(state, day) {
   } 
   else {
     const keysToIterate = getAppointmentArr[0].appointments;
-    const result = [];
+    const appointmentsArr = [];
     for (let element of keysToIterate) {
-      result.push(state.appointments[element])
+      appointmentsArr.push(state.appointments[element])
     }
 
-    return result;
+    return appointmentsArr;
   }
 };
 
@@ -21,3 +21,19 @@ export function getInterview(state, interview) {
   return null;
 }
 
+export function getInterviewersByDay(state,day){
+  const getInterviewArr = state.days.filter(item => item.name === day);
+  if (getInterviewArr.length === 0 ) {
+    return [];
+  } 
+  else {
+    const keysToIterate = getInterviewArr[0].interviewers;
+    const interviewersArr = [];
+    for (let element of keysToIterate) {
+      interviewersArr.push(state.interviewers[element])
+    }
+
+    return interviewersArr;
+  }
+
+}
