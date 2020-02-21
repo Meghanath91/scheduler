@@ -1,14 +1,13 @@
-export default function getAppointmentsForDay(state, day) {
-  const getAppointment = state.days.filter(item => item.name === day);
-  if (getAppointment.length === 0) {
+export function getAppointmentsForDay(state, day) {
+  const getAppointmentArr = state.days.filter(item => item.name === day);
+  if (getAppointmentArr.length === 0 ) {
     return [];
-  } else {
-    const keysToIterate = getAppointment[0].appointments;
-    console.log('STATE', state);
-    console.log('KEYSTOITERATE', keysToIterate)
+  } 
+  else {
+    const keysToIterate = getAppointmentArr[0].appointments;
     const result = [];
     for (let element of keysToIterate) {
-      result.push({...state.appointments[element], interview: getInterview(state, state.appointments[element].interview)});
+      result.push(state.appointments[element])
     }
 
     return result;
