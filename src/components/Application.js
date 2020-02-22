@@ -36,10 +36,19 @@ export default function Application() {
       ...state,
       appointments
     });
-        
+    return(
+      axios.put(`/api/appointments/${id}`,appointment)
+      .then(()=>setState({
+        ...state,
+        appointments
+      }))
+    )
     
-    console.log("this is what you need",id, interview);
+
   }
+
+
+
   const schedule = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
     

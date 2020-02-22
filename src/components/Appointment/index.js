@@ -20,12 +20,7 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
-    props.bookInterview(props.id,interview)
-    transition(SHOW)
-    
-      
-      console.log("id",props.id,interview,"wonder who i am")
-      
+    props.bookInterview(props.id, interview).then(transition(SHOW)).catch(error=>transition(error,true));
   }
 
   return (
