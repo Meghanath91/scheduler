@@ -2,7 +2,7 @@ import React from "react";
 import "components/Appointment/styles.scss";
 
 export default function Error(props) {
-  console.log("hi");
+  
   return (
     <main className="appointment__card appointment__card--error">
       <section className="appointment__error-message">

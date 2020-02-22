@@ -1,14 +1,7 @@
-Promise.all([
-  Promise.resolve("first"),
-  Promise.resolve("second"),
-  Promise.resolve("third"),
-]).then((all) => {
-  console.log(all,"all");
-  console.log(all[0]); // first
-  console.log(all[1]); // second
-  console.log(all[2]); // third
+const xo=[5,6]
+const original = [1,2,xo]
 
-  const [first, second, third] = all;
+const copy =[1,2, ...xo, ...xo, xo, ...xo]
 
-  console.log(first, second, third);
-});
+console.log(original ); // false
+console.log(copy); // false

@@ -17,11 +17,32 @@ export default function Application() {
     appointments: {},
     interviewers: {}
   });
+
   const setDay = day => setState(state => ({ ...state, day }));
+
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersByDay(state, state.day);
+
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({
+      ...state,
+      appointments
+    });
+        
+    
+    console.log("this is what you need",id, interview);
+  }
   const schedule = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
+    
 
     return (
       <Appointment
@@ -30,6 +51,8 @@ export default function Application() {
         time={appointment.time}
         interview={interview}
         interviewers={interviewers}
+        bookInterview={bookInterview}
+        
       />
     );
   });

@@ -4,16 +4,11 @@ import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
 
 
-// const interviewers = [
-//   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
-//   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
-//   { id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" },
-//   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
-//   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
-// ];
+
 
 
 export default function Form(props) {
+  console.log(props,"props with save compo")
   const reset = function() {
     setName("");
     setInterviewer(null);
@@ -52,7 +47,7 @@ export default function Form(props) {
           <Button onClick={cancel} danger>
             Cancel
           </Button>
-          <Button onClick={props.onSave} confirm>
+          <Button onClick= {()=>props.onSave(name,interviewer)} confirm>
             Save
           </Button>
         </section>
