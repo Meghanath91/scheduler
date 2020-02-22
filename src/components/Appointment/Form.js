@@ -18,6 +18,9 @@ export default function Form(props) {
     reset();
     props.onCancel();
   };
+  const save = function(){
+
+  }
 
   const [name, setName] = useState(props.name || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
@@ -32,7 +35,7 @@ export default function Form(props) {
             type="text"
             value={name}
             onSubmit={event => event.preventDefault()}
-            onChange={e => setName(e.target.value)}
+            onChange={event => setName(event.target.value)}
             placeholder="Enter Student Name"
           />
         </form>

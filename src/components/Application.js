@@ -43,11 +43,7 @@ export default function Application() {
         appointments
       }))
     )
-    
-
   }
-
-
 
   const schedule = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
