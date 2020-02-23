@@ -4,7 +4,7 @@ import InterviewerListItem from "components/InterviewerListItem";
 
 function InterviewerList(props) {
   console.log("props interviewer/list", props);
-  const interviewersCatalog = props.interviewers
+  const interviewersCatalog= props.interviewers
     ? props.interviewers.map(Interviewer => {
         return (
           <InterviewerListItem

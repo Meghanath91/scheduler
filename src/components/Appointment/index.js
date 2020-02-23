@@ -15,14 +15,14 @@ const CREATE = "CREATE";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
-// const EDIT = "EDIT"
+const EDIT = "EDIT";
 
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
 
-   const onSave = (name, interviewer) => {
+  const onSave = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer
@@ -33,41 +33,35 @@ export default function Appointment(props) {
       .bookInterview(props.id, interview)
       .then(() => transition(SHOW))
       .catch(error => transition(error, true));
-  }
+  };
 
   const onDelete = () => {
     transition(DELETING);
     props
       .cancelInterview(props.id)
-      .then(()=>{transition(EMPTY)})
-      .catch(error=>transition(error,true));
-  }
+      .then(() => {
+        transition(EMPTY);
+      })
+      .catch(error => transition(error, true));
+  };
 
-  // const onEdit = ()=> {
-
-  //   transition(CREATE);
-
-
-
-  // }
 
   return (
     <article className="appointment">
       <Header time={props.time} />
-      
+
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
 
       {mode === SHOW && (
         <Show
           student={props.interview.student}
-          interviewer={props.interview.interviewer}
-          onDelete={()=> transition(CONFIRM)}
+          interviewer={() => props.interview.interviewer.id}
+          onDelete={() => transition(CONFIRM)}
+          onEdit={() => transition(EDIT)}
         />
       )}
 
-      {mode === SAVING && (
-        <Status stat="Saving"/>
-      )}
+      {mode === SAVING && <Status stat="Saving" />}
 
       {mode === CREATE && (
         <Form
@@ -77,20 +71,25 @@ export default function Appointment(props) {
         />
       )}
 
-      {mode=== DELETING && (
-        <Status stat = "Deleting"/>
-      )}
+      {mode === DELETING && <Status stat="Deleting" />}
 
-      {mode=== CONFIRM && (
-        <Confirm 
+      {mode === CONFIRM && (
+        <Confirm
           comment="Are you sure you want to delete ?"
           onConfirm={onDelete}
-          onCancel={()=> back()}
+          onCancel={() => back()}
         />
-      )
+      )}
 
-      }
-      
+      {mode === EDIT && (
+        <Form
+          onCancel={() => transition(SHOW)}
+          onSave={(name, interviewer) => onSave(name, interviewer)}
+          interviewers={props.interviewers}
+          name={props.interview.student}
+          interviewer={() => props.interview.interviewer.id}
+        />
+      )}
     </article>
   );
 }
