@@ -8,6 +8,7 @@ export default function useApplicationData(){
     appointments: {},
     interviewers: {}
   });
+  
   const setDay = day => setState(state => ({ ...state, day }));
   
   
