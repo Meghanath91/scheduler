@@ -4,6 +4,7 @@ import axios from "axios";
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
+const SET_SPOTS = "SET_SPOTS";
 
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
@@ -16,7 +17,6 @@ export default function useApplicationData() {
   const setDay = day => dispatch({ type: SET_DAY, value: day });
 
   function reducer(state, action) {
-    console.log("action_reducer", action);
     switch (action.type) {
       case SET_DAY:
         return {
@@ -42,11 +42,15 @@ export default function useApplicationData() {
           ...state.appointments,
           [action.value.id]: appointment
         };
+
         return {
           ...state,
           appointments
         };
       }
+
+      case SET_SPOTS:
+        return { ...state, days: action.value };
 
       default:
         throw new Error(
@@ -54,6 +58,7 @@ export default function useApplicationData() {
         );
     }
   }
+
   const bookInterview = (id, interview) => {
     const appointment = {
       ...state.appointments[id],
@@ -91,6 +96,13 @@ export default function useApplicationData() {
       });
     });
   }, []);
+
+  useEffect(() => {
+    axios.get("api/days").then(r => {
+      console.log(r, "this is itttttttt");
+      dispatch({ type: SET_SPOTS, value: r.data });
+    });
+  }, [state.appointments]);
 
   return {
     state,
