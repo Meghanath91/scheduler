@@ -98,9 +98,9 @@ export default function useApplicationData() {
   }, []);
 
   useEffect(() => {
-    axios.get("api/days").then(r => {
-      console.log(r, "this is itttttttt");
-      dispatch({ type: SET_SPOTS, value: r.data });
+    axios.get("api/days").then(res => {
+      
+      dispatch({ type: SET_SPOTS, value: res.data });
     });
   }, [state.appointments]);
 
