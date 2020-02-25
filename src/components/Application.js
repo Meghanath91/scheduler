@@ -1,3 +1,4 @@
+//######################################## Dependencies########################################
 import React from "react";
 import Appointment from "components/Appointment";
 import useApplicationData from "hooks/useApplicationData";
@@ -10,8 +11,10 @@ import {
   getInterviewersByDay
 } from "helpers/selectors";
 
+//############################### TOP LAYER APPLICATION FUNCTION ################################
 export default function Application() {
 
+//#################### VARIABLE DECLARATION###################################
   const {
     state,
     setDay,
