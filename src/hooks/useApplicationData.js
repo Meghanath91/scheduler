@@ -34,13 +34,34 @@ export default function useApplicationData() {
 
       case SET_INTERVIEW: {
 
+        let spotChange;
 
+        if (action.value.interview && !state.appointments[action.value.id].interview){
+          spotChange = -1;
+        }
+        if (state.appointments[action.value.id].interview && !action.value.interview) {
+          spotChange = 1;
+        }
+        if (state.appointments[action.value.id].interview && action.value.interview) {
+          spotChange = 0;
+        }
+        
+        //creates an array of days (newDays) that includes the updated number of spots for the day in the current state
+        let newDays = state.days.map(item => {
+          if (item.name !== state.day) {
+            return item;
+          }
+          return {
+            ...item,
+            spots: (item.spots + spotChange)
+          }
+        })
 
 
 
         const appointment = {
           ...state.appointments[action.value.id],
-          interview: { ...action.value.interview }
+          interview: action.value.interview
         };
 
         const appointments = {
@@ -51,6 +72,7 @@ export default function useApplicationData() {
         return {
           ...state,
           appointments,
+          days:newDays
          
         };
       }
@@ -76,13 +98,10 @@ export default function useApplicationData() {
     });
   };
 
-  const cancelInterview = id => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-    return axios.delete(`api/appointments/${id}`, appointment).then(() => {
-      dispatch({ type: SET_INTERVIEW, value: id });
+  const cancelInterview = (id) => {
+    
+    return axios.delete(`api/appointments/${id}`).then((res) => {
+      dispatch({ type: SET_INTERVIEW, value:{id,interview:null} });
     });
   };
 
