@@ -4,7 +4,7 @@ import axios from "axios";
 const SET_DAY = "SET_DAY";
 const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 const SET_INTERVIEW = "SET_INTERVIEW";
-const SET_SPOTS = "SET_SPOTS";
+// const SET_SPOTS = "SET_SPOTS";
 
 export default function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
@@ -33,6 +33,11 @@ export default function useApplicationData() {
         };
 
       case SET_INTERVIEW: {
+
+
+
+
+
         const appointment = {
           ...state.appointments[action.value.id],
           interview: { ...action.value.interview }
@@ -45,12 +50,13 @@ export default function useApplicationData() {
 
         return {
           ...state,
-          appointments
+          appointments,
+         
         };
       }
 
-      case SET_SPOTS:
-        return { ...state, days: action.value };
+      // case SET_SPOTS:
+      //   return { ...state, days: action.value };
 
       default:
         throw new Error(
@@ -97,12 +103,12 @@ export default function useApplicationData() {
     });
   }, []);
 
-  useEffect(() => {
-    axios.get("api/days").then(res => {
+  // useEffect(() => {
+  //   axios.get("api/days").then(res => {
       
-      dispatch({ type: SET_SPOTS, value: res.data });
-    });
-  }, [state.appointments]);
+  //     dispatch({ type: SET_SPOTS, value: res.data });
+  //   });
+  // }, [state.appointments]);
 
   return {
     state,

@@ -4,8 +4,8 @@ import InterviewerListItem from "components/InterviewerListItem";
 import PropTypes from "prop-types";
 
 InterviewerList.propTypes = {
-  value: PropTypes.number,
-  onChange: PropTypes.func.isRequired
+  interviewer: PropTypes.number,
+  setInterviewer: PropTypes.func.isRequired
 };
 
 function InterviewerList(props) {

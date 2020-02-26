@@ -1,70 +1,44 @@
+case SET_INTERVIEW:
+      {
 
-import {useState,useEffect} from 'react';
-import axios from "axios";
+        //spotChange sets and increment value for updating days.spots based on the action (i.e. Create, Edit, Delete)
+        let spotChange;
 
-export default function useApplicationData(){
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {}
-  });
-  
-  const setDay = day => setState(state => ({ ...state, day }));
-  
-  
-  
-  const bookInterview = (id, interview) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    setState({
-      ...state,
-      appointments
-    });
-    return axios.put(`/api/appointments/${id}`, appointment).then(() =>
-      setState({
-        ...state,
-        appointments
-      })
-    );
-  };
-  
-  const cancelInterview = id => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    return axios
-      .delete(`api/appointments/${id}`, appointment)
-      .then(() => setState({ ...state, appointments }));
-  };
+        if (action.value.interview && !state.appointments[action.value.id].interview){
+          spotChange = -1;
+        }
+        if (state.appointments[action.value.id].interview && !action.value.interview) {
+          spotChange = 1;
+        }
+        if (state.appointments[action.value.id].interview && action.value.interview) {
+          spotChange = 0;
+        }
+        
+        //creates an array of days (newDays) that includes the updated number of spots for the day in the current state
+        let newDays = state.days.map(item => {
+          if (item.name !== state.day) {
+            return item;
+          }
+          return {
+            ...item,
+            spots: (item.spots + spotChange)
+          }
+        })
 
-  useEffect(() => {
-    Promise.all([
-      axios.get("/api/days"),
-      axios.get("/api/appointments"),
-      axios.get("/api/interviewers ")
-    ]).then(all => {
-      setState(state => ({
-        ...state,
-        days: all[0].data,
-        appointments: all[1].data,
-        interviewers: all[2].data
-      }));
-    });
-  }, []);
+        const appointment = {
+          ...state.appointments[action.value.id],
+          interview: action.value.interview
+        };
 
-  return{
-    state,setDay,bookInterview,cancelInterview
-  }
-}
+        const appointments = {
+          ...state.appointments,
+          [action.value.id]: appointment
+        };
+
+        //interview is set, appointments are updated and state.days is overriden with newDays, which has the updated number of spots
+        return {
+          ...state,
+          appointments,
+          days: newDays
+        }
+      }
