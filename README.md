@@ -3,11 +3,16 @@
 An application that allows the user to book appointments with selected interviewer throughout the week. The user can also edit and delete appointments.
 
 # Final Product
+ScreenShot of Home page Layout
 !["ScreenShot of Home page Layout"](https://github.com/Meghanath91/scheduler/blob/master/public/images/interview_scheduler1.jpg)
+ScreenShot of Creating an appointment
 !["ScreenShot of Creating an appointment"](https://github.com/Meghanath91/scheduler/blob/master/public/images/interview_scheduler2.jpg)
+ScreenShot of Deleting an appointment
 !["ScreenShot of Deleting an appointment"](https://github.com/Meghanath91/scheduler/blob/master/public/images/interview_scheduler4.jpg)
+ScreenShot of Deleting animation
 !["ScreenShot of Deleting animation"](https://github.com/Meghanath91/scheduler/blob/master/public/images/interview_scheduler5.jpg)
 
+This animation will show the overall working of Application
 !["Animation of application use"](https://github.com/Meghanath91/scheduler/blob/master/public/images/Interview%20Scheduler.gif)
 
 ## Getting started
