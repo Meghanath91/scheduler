@@ -1,6 +1,8 @@
 import React from "react";
 import classnames from "classnames";
 
+//***********DayListItem compo child<== of DayList
+
 import "components/DayListItem.scss";
 
 export default function DayListItem(props) {

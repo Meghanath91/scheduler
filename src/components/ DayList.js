@@ -1,3 +1,4 @@
+//Daylist compo <== child of Application compo
 import React from "react";
 import DayListItem from "components/DayListItem";
 

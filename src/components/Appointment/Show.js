@@ -1,7 +1,10 @@
+//******Responsible for showing booked appoinments <== child of appointment compo**************/
+//import libraries and files
 import React from "react";
 import "components/Appointment/styles.scss";
-
+//Export fn to ==> ==> ==> Appointment compo
 export default function Show(props) {
+  //<== <== getting props from index(appointment compo)
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

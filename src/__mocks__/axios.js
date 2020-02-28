@@ -1,3 +1,5 @@
+// this file is a replica of actual server for Testing purposes
+//Fixtures is the Prototype of Actual DB
 const fixtures = {
   days: [
     {
@@ -54,8 +56,8 @@ const fixtures = {
 };
 
 export default {
-  defaults:{baseURL:""},
-  get: jest.fn(url => {
+  defaults: { baseURL: "" },
+  get: jest.fn(url => {//Mock fn for GET request
     if (url === "/api/days") {
       return Promise.resolve({
         status: 200,
@@ -67,33 +69,31 @@ export default {
     if (url === "/api/appointments") {
       /* Resolve appointments data */
       return Promise.resolve({
-        status:200,
-        statusText:"OK",
-        data:fixtures.appointments
-
-      })
+        status: 200,
+        statusText: "OK",
+        data: fixtures.appointments
+      });
     }
 
     if (url === "/api/interviewers") {
       /* Resolve interviewers data */
       return Promise.resolve({
-        status:200,
-        statusText:"OK",
-        data:fixtures.interviewers
-
-      })
+        status: 200,
+        statusText: "OK",
+        data: fixtures.interviewers
+      });
     }
   }),
-  put: jest.fn(url => {
+  put: jest.fn(url => {//Mock functions for PUT request
     return Promise.resolve({
       status: 204,
       statusText: "No Content"
-    })
+    });
   }),
-  delete: jest.fn(url => {
+  delete: jest.fn(url => {//Mock functions for Delete request
     return Promise.resolve({
       status: 204,
       statusText: "No Content"
-    })
+    });
   })
-}
+};

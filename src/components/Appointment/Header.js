@@ -1,3 +1,4 @@
+//responsible for showing Appoinment intervals
 import React from "react";
 import "components/Appointment/styles.scss";
 

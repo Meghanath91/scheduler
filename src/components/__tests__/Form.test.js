@@ -1,16 +1,16 @@
+// tests for FORM compo
 import React from "react";
 
 import {
   render,
   cleanup,
   fireEvent,
-  getByAltText
 } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
 afterEach(cleanup);
-
+//test suite
 describe("Form", () => {
   const interviewers = [
     {

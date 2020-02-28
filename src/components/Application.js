@@ -1,10 +1,11 @@
 //######################################## Dependencies########################################
 import React from "react";
-import Appointment from "components/Appointment";
-import useApplicationData from "hooks/useApplicationData";
-
 import "components/Application.scss";
+
+import useApplicationData from "hooks/useApplicationData";
+import Appointment from "components/Appointment";
 import DayList from "components/ DayList";
+//importing helper functions
 import {
   getAppointmentsForDay,
   getInterview,
@@ -13,8 +14,9 @@ import {
 
 //############################### TOP LAYER APPLICATION FUNCTION ################################
 export default function Application() {
+  //Exporting to Primary application layer
 
-//#################### VARIABLE DECLARATION###################################
+  //#################### VARIABLE DECLARATION###################################
   const {
     state,
     setDay,
@@ -24,7 +26,7 @@ export default function Application() {
 
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersByDay(state, state.day);
-
+  //appointment compos wrapped into schedule
   const schedule = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
 

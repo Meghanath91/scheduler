@@ -1,9 +1,9 @@
+//importing dependencies
 import React from "react";
 import "components/Appointment/styles.scss";
 
-export default function Status(props) {
-  console.log(props)
- 
+export default function Status(props) {//getting props from top layer
+  
   return (
     <main className="appointment__card appointment__card--status">
       <img

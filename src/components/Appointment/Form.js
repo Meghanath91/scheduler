@@ -1,36 +1,37 @@
+//**************************importing all dependenccies****************//
 import React, { useState } from "react";
 import "components/Appointment/styles.scss";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
-
-export default function Form(props) {
+//exporting ==> ==> ==> to appointment compo
+export default function Form(props) {//<== <== getting props from parent appointment compo
+  //declaration of useState
   const [name, setName] = useState(props.name || "");
   const [error, setError] = useState("");
-
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
+  // fn to reset values in form when user clicks cancel button
   const reset = () => {
     setName("");
     setInterviewer(null);
   };
-
+  //fn to be called when user clicks cancel button
   const onCancel = () => {
     reset();
     props.onCancel();
   };
-
+  //fn to validate form element
   const validate = () => {
-    if (name === "") {
+    if (name === "") {//if there is no name in the placeholder then show error msg
       setError("Student name cannot be blank");
       return;
     }
-    if(interviewer === null){
+    if(interviewer === null){//if interviewer is not selected show error msg
       setError("Please select an interviewer");
       return
     }
-
+    //if interviewer and student is selected then ==> fn called with empty string
     setError("");
-
+    //fn will be called with student name & interviewer obj
     props.onSave(name, interviewer);
   };
 

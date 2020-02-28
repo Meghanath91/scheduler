@@ -1,15 +1,18 @@
+//**************************Appointment Component(contains other components) (2nd layer)*******************************//
+//importing all dependencies
 import React from "react";
 import "components/Appointment/styles.scss";
-
+//importing Hooks
+import useVisualMode from "../../hooks/useVisualMode";
+//importing child components to appointment compo
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
-import useVisualMode from "../../hooks/useVisualMode";
 import Form from "components/Appointment/Form";
 import Status from "components/Appointment/Status";
 import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
-
+//*******initilization of constants */
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -19,39 +22,41 @@ const CONFIRM = "CONFIRM";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
-
-export default function Appointment(props) {
+//Exporting function to Application layer ==> ==> ==>
+export default function Appointment(props) {//<== <== <== getting props from Application
+  //Destructuring
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+  // fn to be called when user saves an interview 
   const onSave = (name, interviewer) => {
+    //create an obj for new interview with the arguments passed from Top layer
     const interview = {
       student: name,
       interviewer
     };
-
+    //fn transition will be called with "SAVING"
     transition(SAVING);
     props
-      .bookInterview(props.id, interview)
-      .then(() => transition(SHOW))
-      .catch(error => transition(ERROR_SAVE, true));
+      .bookInterview(props.id, interview)//call the fn in toplayer with values from bottom layer 
+      .then(() => transition(SHOW))// when it is done then call transition with SHOW
+      .catch(error => transition(ERROR_SAVE, true));//when there is error call transition with error save
   };
-
+  //fn to be called when user delete an interview
   const onDelete = () => {
     transition(DELETING);
     props
-      .cancelInterview(props.id)
+      .cancelInterview(props.id)//fn in toplayer will be called
       .then(() => {
-        transition(EMPTY);
+        transition(EMPTY);//when resolved call with EMPTY
       })
-      .catch(error => transition(ERROR_DELETE, true));
+      .catch(error => transition(ERROR_DELETE, true));//when there is error 
   };
 
   return (
     <article className="appointment"  data-testid="appointment">
       <Header time={props.time} />
-
+      
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
 
       {mode === SHOW && (

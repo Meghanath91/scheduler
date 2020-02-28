@@ -20,11 +20,8 @@ afterEach(cleanup);
   A test that renders a React Component
 */
 
-describe("Appointment",()=>{
-
+describe("Appointment", () => {
   it("renders without crashing", () => {
     render(<Appointment />);
   });
-
-})
-
+});

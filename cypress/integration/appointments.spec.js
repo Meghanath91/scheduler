@@ -1,4 +1,4 @@
-//**********************Test suite for managing interview****************************// 
+//**********************Test suite for managing interview****************************//
 
 describe("Appointments", () => {
   beforeEach(() => {
@@ -9,7 +9,7 @@ describe("Appointments", () => {
     cy.contains("Monday");
   });
 
-//********************Test for booking an interview***********************************//
+  //********************Test for booking an interview***********************************//
 
   it("should book an interview", () => {
     cy.get("[alt=Add]")
@@ -25,7 +25,7 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Sylvia Palmer");
   });
 
-//********************Test for Editing an interview***********************************//
+  //********************Test for Editing an interview***********************************//
 
   it("should edit an interview", () => {
     cy.get("[alt=Edit]")
@@ -43,7 +43,7 @@ describe("Appointments", () => {
     cy.contains(".appointment__card--show", "Tori Malcolm");
   });
 
-//********************Test for Canceling an interview***********************************//
+  //********************Test for Canceling an interview***********************************//
 
   it("should cancel an interview", () => {
     cy.get("[alt=Delete]").click({ force: true });
