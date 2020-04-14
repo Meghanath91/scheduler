@@ -3,6 +3,7 @@
 An application that allows the user to book appointments with selected interviewer throughout the week. The user can also edit and delete appointments.
 
 1. Please Go to  <https://nervous-hypatia-206169.netlify.com/> in your browser.
+   Please wait 30 seconds or refresh page in case of any difficulties. 
 
 # Final Product
 ScreenShot of Home page Layout
