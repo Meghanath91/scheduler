@@ -2,6 +2,8 @@
 
 An application that allows the user to book appointments with selected interviewer throughout the week. The user can also edit and delete appointments.
 
+1. Please Go to  <https://nervous-hypatia-206169.netlify.com/> in your browser.
+
 # Final Product
 ScreenShot of Home page Layout
 !["ScreenShot of Home page Layout"](https://github.com/Meghanath91/scheduler/blob/master/public/images/interview_scheduler1.jpg)
